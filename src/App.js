@@ -11,12 +11,12 @@ export default function App() {
     }
   };
 
-  const test = true;
-  console.log(test);
-
   const removeTodo = (index) => {
+    const removetask = window.confirm('Are you Sure Remove This Task ?');
+    if(removetask){
     const newTodos = todos.filter((_, i) => i !== index);
     setTodos(newTodos);
+    }
   };
   return (
     <div className="container">
