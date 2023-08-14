@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
-function App() {
+export default function App() {
+  const [todos, setTodos] = useState([]);
+  const [input, setInput] = useState('');
+
+  const addTodo = () => {
+    if (input) {
+      setTodos([...todos, input]);
+      setInput('');
+    }
+  };
+
+  const test = true;
+  console.log(test);
+
+  const removeTodo = (index) => {
+    const newTodos = todos.filter((_, i) => i !== index);
+    setTodos(newTodos);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1 className="mt-4 mb-4">Todo List</h1>
+      <div className="input-group mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="Enter a task..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <button className="btn btn-primary" onClick={addTodo}>
+          Add
+        </button>
+      </div>
+      <ul className="list-group">
+        {todos.map((todo, index) => (
+          <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+            <span>{todo}</span>
+            <button className="btn btn-danger" onClick={() => removeTodo(index)}>
+              Remove
+            </button>
+          </li>
+        ))}
+      </ul>
     </div>
-  );
+  )
 }
-
-export default App;
