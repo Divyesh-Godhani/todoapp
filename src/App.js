@@ -20,7 +20,7 @@ export default function App() {
   };
   return (
     <div className="container">
-      <h1 className="mt-4 mb-4">Todo List</h1>
+      <h1 className="mt-4 mb-4">Todo App</h1>
       <div className="input-group mb-3">
         <input
           type="text"
